@@ -1,0 +1,30 @@
+# Created by FHEM/98_SVG.pm, 2017-12-26 10:10:00
+set terminal png transparent size <SIZE> crop
+set output '<OUT>.png'
+set xdata time
+set timefmt "%Y-%m-%d_%H:%M:%S"
+set xlabel " "
+set title 'Anwesenheit Daniel Z5C'
+set ytics ("Weg" 0, "Da" 1)
+set y2tics ("Weg" 0, "Da" 1)
+set grid
+set ylabel "Status"
+set y2label "Status"
+set yrange [-0.1:1.1]
+set y2range [-0.1:1.1]
+# wir benutzen ein logproxy device, das natürlich vorher definiert sein muss
+# logproxy dient dazu, die interpolation zwischen den zeitpunkten der abfrage zu erledigen
+# die regexp presenceDaniel\40presence.* filtert aus dem logfile die zeilen, die 
+# presenceDaniel presence: present
+# lauten (es gibt dummerweise nämlich noch zu jedem zeitstempel eine zeile mit identischer
+# aussage:
+# 2017-12-26_09:29:37 presenceDaniel present
+# 2017-12-26_09:29:37 presenceDaniel presence: present)
+# und wenn wir beide einfach so verwurschten, haben wir für jeden zeitpunkt gleich zwei aussagen: einmal
+# wird die regexp am ende (fld[3]=~"present"?1:0) zu null ausgewertet und einmal zu eins.
+# das sieht dann im plot wirklich seltsam aus wenn man eigentlich da ist.
+# für absent ist es natürlich kein problem... aber das ist nicht sinn der sache.
+
+#lppresDB FileLog:presencelogDB,predict:3:presenceDaniel\40presence.*::$fld[3]=~"present"?1:0
+
+plot "<IN>" using 1:2 axes x1y2 title 'Daniel' ls l3 lw 1 with steps
