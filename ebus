@@ -1,5 +1,8 @@
 - use GAEBUS: https://forum.fhem.de/index.php?topic=46098.30
 - don't forget to copy ebusd definiton files to /opt/fhem/ebusd (on server running fhem)
+- intent to control circulation pump? Need to set access rights on ebusd, see: https://github.com/john30/ebusd/issues/117#issuecomment-339870522
+- startup parameters for ebusd: /etc/default/ebusd
 - Hardware Interface according to: https://wiki.fhem.de/wiki/EBUS
 - when using above:
   - connect TX Pin of ftdi/whatever serial adapter even if you don't plan to transmit (else interface will block ebus/cause errors)
+  - optocouplers come in different flavours regarding amplification (like transistors do). Might need to adjust resistors accordingly
