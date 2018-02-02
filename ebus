@@ -1,0 +1,5 @@
+- use GAEBUS: https://forum.fhem.de/index.php?topic=46098.30
+- don't forget to copy ebusd definiton files to /opt/fhem/ebusd (on server running fhem)
+- Hardware Interface according to: https://wiki.fhem.de/wiki/EBUS
+- when using above:
+  - connect TX Pin of ftdi/whatever serial adapter even if you don't plan to transmit (else interface will block ebus/cause errors)
