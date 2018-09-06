@@ -1,0 +1,6 @@
+Will react on Timeout2 Error written to fhem logfile
+We need to set 
+attr ReadLog 1
+because our ModBus Device does not generate an event on timeout
+The timeout gets written to the log, only.
+n_WasserCarportTimeout:.*ModbusRS485.*:.*timeout.* set pushmsg msg 'WasserCarport Timeout beim lesen'
