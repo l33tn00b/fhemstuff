@@ -1,0 +1,2 @@
+Will react on the status of the ebus device:
+([ebus1] ne "Connected") (set pushmsg  msg 'State of ebus1 is not "connected". Restart ebusd on ebus server (heizpi).')
